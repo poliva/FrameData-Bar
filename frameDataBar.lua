@@ -259,7 +259,11 @@ local function getStartup(_player_obj)
 		end
 	end
 	if is_startup[id] then
-		startup_counter[id] = countFrames(startup_counter[id])
+		if type(startup_counter[id]) == "number" then
+			startup_counter[id] = countFrames(startup_counter[id])
+		else
+			startup_counter[id] = countFrames(0)
+		end
 		if _player_obj.prev.projectile_ready and not _player_obj.projectile_ready then
 			is_startup[id] = false
 		else
